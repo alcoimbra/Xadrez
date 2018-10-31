@@ -29,8 +29,11 @@ public class Board {
 		this.columns = columns;
 	}
 	
-	@Override
-	public String toString() {
-		return rows + ", " + columns;
+	public Piece piece(int row, int column) {
+		return pieces[row][column];
+	}
+	
+	public Piece piece(Position position) {
+		return pieces[position.getRow()][position.getColumn()];
 	}
 }
