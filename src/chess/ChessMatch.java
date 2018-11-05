@@ -187,6 +187,21 @@ public class ChessMatch {
 			board.placePiece(rook, sourceT);
 			rook.decreaseMoveCount();
 		}
+		
+		/*#Special Move En Passant*/
+		if(p instanceof Pawn) {
+			if(source.getColumn() != target.getColumn() && capturedPiece == enPassantVulnerable) {
+				ChessPiece pawn = (ChessPiece) board.removePiece(target);
+				Position pawnPosition;
+				
+				if(p.getColor() == Color.WHITE) {
+					pawnPosition = new Position(target.getRow() + 1, target.getColumn());
+				}else {
+					pawnPosition = new Position(target.getRow() - 1, target.getColumn());
+				}
+				board.placePiece(pawn, pawnPosition);
+			}
+		}
 	}
 	
 	private void validateSourcePosition(Position position) {
